@@ -65,22 +65,21 @@ function App() {
   }
 
   return (
-    <div className="bg-black h-full w-full min-h-screen">
+    <div className="bg-black h-screen w-full min-h-screen max-w-sm mx-auto flex flex-col">
       <div className="bg-zinc-800 w-full flex flex-row items-center justify-start rounded-xl p-4 gap-3">
         <div className="bg-white h-10 w-10 rounded-full"></div>
         <div className="font-bold text-white">Server</div>
       </div>
-      {currentUser && (
-        <div className="bg-zinc-900 h-full w-full min-h-[80vh] px-4 py-6">
-          {messages.map((message, index) => (
+      <div className="bg-zinc-900 h-full w-full px-4 py-6">
+        {currentUser &&
+          messages.map((message, index) => (
             <ChatBubble
               key={index}
               text={message.msg}
               sender={message.from === currentUser.id}
             />
           ))}
-        </div>
-      )}
+      </div>
       <div className="bg-zinc-800 w-full flex flex-row items-center justify-start rounded-xl">
         <ChatInput sendMessage={sendMessage} />
       </div>

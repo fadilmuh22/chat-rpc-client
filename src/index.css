@@ -19,3 +19,9 @@
     /* Safari, Android, iOS */
       url("../fonts/poppins-v15-latin-regular.svg#Poppins") format("svg"); /* Legacy iOS */
 }
+
+@layer base {
+  html {
+    @apply bg-zinc-950;
+  }
+}
