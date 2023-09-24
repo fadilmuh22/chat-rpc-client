@@ -2,7 +2,7 @@ import {
   GrpcWebFetchTransport,
   GrpcWebOptions,
 } from "@protobuf-ts/grpcweb-transport";
-import { ChatServiceClient } from "./proto/chat.client";
+import { ChatServiceClient } from "../proto/chat.client";
 
 export default function useRPClient() {
   const host = "http://localhost:8080/api";
