@@ -4,12 +4,15 @@ import ChatHeader from "../components/ChatHeader";
 import ChatInput from "../components/ChatInput";
 import ChatList from "../components/ChatList";
 import { User, ChatMessage, ReceiveMsgRequest } from "../proto/chat";
+import usePrevious from "../hooks/usePrevious";
 
 export default function ChatPage() {
   const { client } = useContext(RPCContext);
 
   const [currentUser, setCurrentUser] = useState<User>();
   const [messages, setMessages] = useState<ChatMessage[]>([]);
+
+  const lastMessageCount = usePrevious(messages.length);
 
   const joinHandler = useCallback(() => {
     const username = "New user " + Math.random() * 1000;
@@ -77,7 +80,11 @@ export default function ChatPage() {
   return (
     <div className="bg-black h-screen w-full min-h-screen max-w-sm mx-auto flex flex-col">
       <ChatHeader />
-      <ChatList currentUser={currentUser} messages={messages} />
+      <ChatList
+        currentUser={currentUser}
+        messages={messages}
+        lastMessageCount={lastMessageCount}
+      />
       <ChatInput sendMessage={sendMessage} />
     </div>
   );
