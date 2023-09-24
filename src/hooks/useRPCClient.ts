@@ -4,11 +4,13 @@ import {
 } from "@protobuf-ts/grpcweb-transport";
 import { ChatServiceClient } from "../proto/chat.client";
 
+export const RPC_URL = import.meta.env.VITE_RPC_URL as string;
+
 export default function useRPClient() {
-  const host = "http://localhost:8080/api";
   const options: GrpcWebOptions = {
-    baseUrl: host,
+    baseUrl: RPC_URL,
     format: "binary",
+    timeout: 2 * 1000,
   };
   const transport = new GrpcWebFetchTransport(options);
 
