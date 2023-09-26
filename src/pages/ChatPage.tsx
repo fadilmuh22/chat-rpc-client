@@ -15,7 +15,8 @@ export default function ChatPage() {
   const lastMessageCount = usePrevious(messages.length);
 
   const joinHandler = useCallback(() => {
-    const username = "New user " + Math.random() * 1000;
+    const username =
+      localStorage.getItem("username") || "New user " + Math.random() * 1000;
 
     const user: User = {
       id: Date.now().toString(),
@@ -27,9 +28,9 @@ export default function ChatPage() {
       .then(async (res) => {
         if (res.status.code === "OK") {
           setCurrentUser(user);
+          localStorage.setItem("username", username.toString());
           return;
         }
-        window.localStorage.setItem("username", username.toString());
       })
       .catch((err) => {
         console.log(err);
